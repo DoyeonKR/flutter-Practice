@@ -5,7 +5,7 @@ class CustomGrid extends StatelessWidget {
   final List<String> boxNames = [
     '도연' , '경규' , '재혁',
     '상현' , '호준' , '군인',
-    '홀드' , '미워' , '좋아'
+    '홀드' , '미워' , '조아'
   ];
 
 
