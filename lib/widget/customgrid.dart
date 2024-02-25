@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../screens/detail_screen.dart'; // 디테일 스크린 임포트
+import '../screens/secret_board_screen.dart'; // '비밀 게시판' 페이지를 위한 임포트
 
 class CustomGrid extends StatelessWidget {
   final List<String> boxNames = [
-    '도연' , '경규' , '재혁',
-    '상현' , '호준' , '군인',
-    '홀드' , '미워' , '좋아'
+    '카드 게임방', '환율 따져보고 여행가자', '날씨를 알아보고 내일\n출근 하지말자',
+    '비밀 게시판', '호준', '군인',
+    '홀드', '여긴 게시판', '조아방',
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +24,23 @@ class CustomGrid extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(name: boxNames[index]),
-                ),
-              );
+              if (boxNames[index] == '비밀 게시판') {
+                // '비밀 게시판'을 선택했을 때 게시판 페이지로 이동
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SecretBoardScreen(), // '비밀 게시판' 페이지로 이동
+                  ),
+                );
+              } else {
+                // 다른 항목을 선택했을 때 DetailScreen으로 이동
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailScreen(name: boxNames[index]),
+                  ),
+                );
+              }
             },
             child: Container(
               decoration: BoxDecoration(
@@ -39,7 +50,7 @@ class CustomGrid extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  boxNames[index], // 'boxNames[index]' 대신 boxNames[index] 사용
+                  boxNames[index],
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
